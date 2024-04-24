@@ -6,7 +6,7 @@ on:
       - main  # Adjust the branch name as needed
 
 jobs:
-  ansible-test:
+  ec2-ansible:
     runs-on: ubuntu-latest  # You can choose a different operating system if needed
 
     steps:
@@ -43,5 +43,5 @@ jobs:
     
     - name: Run Ansible Playbook
       run: |
-        ansible-playbook ec2.yml
+        ansible-playbook -i inventory ec2.yml
 
