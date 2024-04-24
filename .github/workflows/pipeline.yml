@@ -1,1 +1,47 @@
+name: ec2-creation
+
+on:
+  push:
+    branches:
+      - main  # Adjust the branch name as needed
+
+jobs:
+  ansible-test:
+    runs-on: ubuntu-latest  # You can choose a different operating system if needed
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8  # Choose a Python version compatible with Ansible
+    
+    - name: Clone ansible
+      uses: GuillaumeFalourd/clone-github-repo-action@v2.3
+      with:
+        depth: 1
+        branch: 'main'
+        owner: 'techtorialdevops'
+        repository: 'ec2-ansible'
+    
+    - name: Configure AWS credentials
+      run: |
+        echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
+        echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
+        echo "AWS_DEFAULT_REGION=${{ secrets.AWS_DEFAULT_REGION }}" >> $GITHUB_ENV
+
+    - name: Access cloned repo
+      run: |
+         cd ec2-ansible
+         ls -la
+
+    - name: Install Ansible
+      run: |
+        pip install ansible
+    
+    - name: Run Ansible Playbook
+      run: |
+        ansible-playbook ec2.yml
 
