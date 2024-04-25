@@ -25,17 +25,17 @@ jobs:
         branch: 'main'
         owner: 'techtorialdevops'
         repository: 'ec2-ansible'
+
+    - name: Access cloned repo
+      run: |
+         cd ec2-ansible
+         ls -la
     
     - name: Configure AWS credentials
       run: |
         echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
         echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
         echo "AWS_DEFAULT_REGION=${{ secrets.AWS_DEFAULT_REGION }}" >> $GITHUB_ENV
-
-    - name: Access cloned repo
-      run: |
-         cd ec2-ansible
-         ls -la
 
     - name: Install Ansible
       run: |

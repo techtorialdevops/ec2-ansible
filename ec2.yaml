@@ -16,12 +16,12 @@
               delete_on_termination: true
               volume_type: gp3
               volume_size: 5
-  - name: Spot Request Termination
-    amazon.aws.ec2_spot_instance:
-        spot_instance_request_ids: ['sir-3xeyr2wn', 'sir-zhn6vjdq']
-        state: absent
-  - name: Terminate aws instance
-    ec2_instance:
-        state: 'absent'
-        instance_ids: '*'
+  # - name: Spot Request Termination
+  #   amazon.aws.ec2_spot_instance:
+  #       spot_instance_request_ids: ['sir-3xeyr2wn', 'sir-zhn6vjdq']
+  #       state: absent
+  # - name: Terminate aws instance
+  #   ec2_instance:
+  #       state: 'absent'
+  #       instance_ids: '*'
     
