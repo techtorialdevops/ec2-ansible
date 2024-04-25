@@ -40,6 +40,7 @@ jobs:
     - name: Install Ansible
       run: |
         pip install ansible
+        pip install boto3
     
     - name: Run Ansible Playbook
       run: |
