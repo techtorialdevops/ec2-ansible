@@ -16,7 +16,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.8  # Choose a Python version compatible with Ansible
+        python-version: 3.7  # Choose a Python version compatible with Ansible
     
     - name: Clone ansible
       uses: GuillaumeFalourd/clone-github-repo-action@v2.3
@@ -42,9 +42,7 @@ jobs:
         pip install boto3
         pip install botocore
         pip install ansible
-        
-      
-    
+           
     - name: Run Ansible Playbook
       run: |
         ansible-playbook -i inventory ec2.yaml
